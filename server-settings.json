@@ -1,10 +1,10 @@
 {
-  "googleSheetsUrl": "https://script.google.com/macros/s/AKfycbxF3onpDWODm-iPPZ80wNUPkZfONhj7UxgQbMBLcScqmjfAN20ZI-iAVqc9Q6TTOvJp/exec",
-  "autoSheetsSyncEnabled": 1,
-  "autoSheetsSyncMinutes": 1,
-  "authDisabled": 1,
-  "companyName": "ALL 4 LOGISTICS",
+  "googleSheetsUrl": "",
+  "autoSheetsSyncEnabled": 0,
+  "autoSheetsSyncMinutes": 15,
+  "authDisabled": 0,
+  "companyName": "Warehouse Tracker",
   "appTagline": "Live inventory • PWA",
-  "logoUrl": "https://all4logistics.co.uk/wp-content/uploads/2021/04/all4logo-png.png",
-  "accentColor": "#cf2e2e"
+  "logoUrl": "",
+  "accentColor": "#3b82f6"
 }
