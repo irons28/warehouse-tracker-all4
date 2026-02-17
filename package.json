@@ -1,0 +1,47 @@
+{
+  "name": "warehouse-tracker",
+  "version": "1.0.0",
+  "description": "Warehouse inventory tracking system with QR code scanning",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "generate-ssl": "node generate-ssl.js",
+    "dev": "nodemon server.js",
+    "tunnel:cf": "bash ./scripts/start-cloudflare-tunnel.sh 3000",
+    "tunnel:fixed": "bash ./scripts/start-cloudflare-fixed-tunnel.sh",
+    "tunnel:setup:fixed": "bash ./scripts/setup-fixed-domain-cloudflare.sh",
+    "tunnel:ngrok": "bash ./scripts/start-ngrok-tunnel.sh 3000",
+    "preflight:release": "bash ./scripts/release-preflight.sh",
+    "backup:db": "bash ./scripts/db-backup.sh",
+    "start:prod": "NODE_ENV=production node server.js",
+    "deploy:prod": "bash ./scripts/deploy-prod.sh",
+    "backup:rotate": "bash ./scripts/db-backup-rotate.sh",
+    "backup:upload": "bash ./scripts/db-backup-upload.sh",
+    "backup:nightly": "bash ./scripts/nightly-backup.sh",
+    "backup:install-cron": "bash ./scripts/install-cron-backup.sh",
+    "ops:smoke": "bash ./scripts/ops-smoke-check.sh",
+    "ops:go-live": "npm run preflight:release && npm run ops:smoke"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "warehouse",
+    "inventory",
+    "qr-code",
+    "tracking"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "node-cron": "^4.2.1",
+    "socket.io": "^4.6.1",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

@@ -1,0 +1,10 @@
+# Copy to ~/.cloudflared/config.yml and replace placeholders.
+# This maps a stable domain/subdomain to your local warehouse tracker.
+
+tunnel: REPLACE_TUNNEL_ID
+credentials-file: /Users/REPLACE_USER/.cloudflared/REPLACE_TUNNEL_ID.json
+
+ingress:
+  - hostname: app.example.com
+    service: http://127.0.0.1:3000
+  - service: http_status:404

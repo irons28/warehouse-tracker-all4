@@ -1,0 +1,14 @@
+# Replace app.example.com with your real domain.
+app.example.com {
+  encode zstd gzip
+
+  # Optional headers
+  header {
+    X-Content-Type-Options nosniff
+    X-Frame-Options DENY
+    Referrer-Policy no-referrer
+  }
+
+  # Forward to app server
+  reverse_proxy 127.0.0.1:3000
+}
