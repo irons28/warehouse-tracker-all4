@@ -225,3 +225,17 @@ If `~/.cloudflared/config.yml` exists, the launcher automatically uses fixed-dom
 Guide:
 
 - `deployment/FIXED_DOMAIN_CLOUDFLARE.md`
+
+## ALL 4 customer profile
+
+This repo is the ALL 4 customer deployment variant.
+
+Customer-specific defaults:
+- Company: `ALL 4 LOGISTICS`
+- Accent: `#cf2e2e`
+- Shared no-login mode: enabled (`authDisabled=1`)
+- Fixed domain target: `tracker.all4logistics.com`
+
+See:
+- `deployment/cloudflared-config.all4.example.yml`
+- `deployment/CUSTOMER_RUNTIME_NOTES.md`
