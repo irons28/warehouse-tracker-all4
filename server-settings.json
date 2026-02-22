@@ -2,7 +2,7 @@
   "googleSheetsUrl": "",
   "autoSheetsSyncEnabled": 1,
   "autoSheetsSyncMinutes": 5,
-  "authDisabled": 1,
+  "authDisabled": 0,
   "companyName": "ALL 4 LOGISTICS",
   "appTagline": "Live inventory • PWA",
   "logoUrl": "https://all4logistics.co.uk/wp-content/uploads/2021/04/all4logo-png.png",
