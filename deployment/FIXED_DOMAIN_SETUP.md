@@ -8,7 +8,7 @@ This runbook configures a stable URL for Warehouse Tracker.
 ## Prerequisites
 - Domain is managed in Cloudflare DNS (`collenlabs.uk`).
 - `cloudflared` installed on host machine.
-- App runs locally on `http://127.0.0.1:3000`.
+- App runs locally on `https://127.0.0.1:3443` (self-signed cert).
 
 ## 1) Authenticate Cloudflare CLI
 ```bash
@@ -30,7 +30,9 @@ tunnel: 7b3014ac-4be0-4a4f-b599-c1f21765dd29
 credentials-file: /Users/bencollen/.cloudflared/7b3014ac-4be0-4a4f-b599-c1f21765dd29.json
 ingress:
   - hostname: all4.collenlabs.uk
-    service: http://127.0.0.1:3000
+    service: https://127.0.0.1:3443
+    originRequest:
+      noTLSVerify: true
   - service: http_status:404
 ```
 
