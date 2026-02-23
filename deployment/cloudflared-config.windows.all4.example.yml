@@ -1,0 +1,9 @@
+tunnel: 7b3014ac-4be0-4a4f-b599-c1f21765dd29
+credentials-file: C:\Users\<WORK_PC_USER>\.cloudflared\7b3014ac-4be0-4a4f-b599-c1f21765dd29.json
+
+ingress:
+  - hostname: all4.collenlabs.uk
+    service: https://127.0.0.1:3443
+    originRequest:
+      noTLSVerify: true
+  - service: http_status:404
