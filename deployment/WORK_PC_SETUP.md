@@ -3,53 +3,71 @@
 This is the exact setup for the Windows work computer.
 
 ## 1) Pull latest repo
-```powershell
-cd C:\warehouse-tracker-all4
+```bat
+cd C:\Users\User\Documents\warehouse-tracker-all4
 git pull
 npm install
 ```
 
 ## 2) Create Cloudflare folder
-```powershell
-mkdir "$env:USERPROFILE\.cloudflared" -Force
+```bat
+mkdir C:\Users\User\.cloudflared
 ```
 
-## 3) Place config.yml
-Copy file from repo:
-- `deployment/cloudflared-config.windows.all4.example.yml`
-
-Save it as:
-- `C:\Users\<WORK_PC_USER>\.cloudflared\config.yml`
-
-Replace:
-- `<WORK_PC_USER>` with the Windows username.
-
-## 4) Ensure tunnel credentials JSON exists (required)
-Required local file (not in git):
-- `C:\Users\<WORK_PC_USER>\.cloudflared\7b3014ac-4be0-4a4f-b599-c1f21765dd29.json`
-
-Notes:
-- This file is created by Cloudflare auth/token flow.
-- Do not commit this file to GitHub.
-
-## 5) If JSON is missing, recreate it
-```powershell
+## 3) Login and create tunnel credentials (on the work PC)
+```bat
 cloudflared tunnel login
-cloudflared tunnel token wt-all4
+cloudflared tunnel list
 ```
 
-## 6) Start tracker
-```powershell
-cd C:\warehouse-tracker-all4
-start-tracker.bat
+If `wt-all4` already exists, use it. If not:
+```bat
+cloudflared tunnel create wt-all4
 ```
+
+## 4) Map DNS
+```bat
+cloudflared tunnel route dns wt-all4 all4.collenlabs.uk
+```
+
+## 5) Create `config.yml`
+Save this file as:
+`C:\Users\User\.cloudflared\config.yml`
+
+Use the tunnel ID shown by `cloudflared tunnel list`:
+
+```yml
+tunnel: <TUNNEL_ID>
+credentials-file: C:/Users/User/.cloudflared/<TUNNEL_ID>.json
+
+ingress:
+  - hostname: all4.collenlabs.uk
+    service: https://127.0.0.1:3443
+    originRequest:
+      noTLSVerify: true
+  - service: http_status:404
+```
+
+Important:
+- Do not hand-edit the JSON credentials file.
+- Do not commit `.cloudflared` files to GitHub.
+
+## 6) Start tracker (one click)
+Double-click:
+`C:\Users\User\Documents\warehouse-tracker-all4\start-tracker.bat`
 
 ## 7) Validate
 - Public URL: `https://all4.collenlabs.uk`
 - Local URL: `https://localhost:3443`
 
-## 8) Common fixes
-- If tunnel errors repeatedly: close all terminals and run `start-tracker.bat` again.
-- If login loops: hard refresh browser (Ctrl+F5).
-- If app fails to start: check `C:\warehouse-tracker-all4\logs\server.log`.
-- If tunnel fails: check `C:\warehouse-tracker-all4\logs\tunnel.log`.
+## 8) Make it reliable for staff
+1. Set PC to never sleep while plugged in.
+2. Put `start-tracker.bat` in startup folder:
+   `shell:startup`
+3. Keep the work PC online during business hours.
+
+## 9) Common fixes
+- If cloud URL shows 502: restart with `start-tracker.bat`.
+- If login loops: hard refresh browser (`Ctrl+F5`).
+- If app fails to start: check `C:\Users\User\Documents\warehouse-tracker-all4\logs\server.log`.
+- If tunnel fails: check `C:\Users\User\Documents\warehouse-tracker-all4\logs\tunnel.log`.
