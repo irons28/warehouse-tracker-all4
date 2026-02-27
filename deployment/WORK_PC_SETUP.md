@@ -61,10 +61,23 @@ Double-click:
 - Local URL: `https://localhost:3443`
 
 ## 8) Make it reliable for staff
-1. Set PC to never sleep while plugged in.
-2. Put `start-tracker.bat` in startup folder:
-   `shell:startup`
-3. Keep the work PC online during business hours.
+1. Set PC to never sleep while plugged in:
+```bat
+powercfg /change standby-timeout-ac 0
+powercfg /change monitor-timeout-ac 0
+```
+
+2. Put `start-tracker.bat` in Windows Startup folder:
+```bat
+mkdir "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" 2>nul
+copy /Y "C:\Users\User\Documents\warehouse-tracker-all4\start-tracker.bat" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\start-tracker.bat"
+```
+
+3. Reboot once and verify two windows open automatically:
+   - `WT Server`
+   - `WT Tunnel`
+
+4. Keep the work PC online during business hours.
 
 ## 9) Common fixes
 - If cloud URL shows 502: restart with `start-tracker.bat`.
