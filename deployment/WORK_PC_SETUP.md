@@ -68,10 +68,10 @@ powercfg /change monitor-timeout-ac 0
 ```
 
 2. Put `start-tracker.bat` in Windows Startup folder:
-```bat
-mkdir "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" 2>nul
-copy /Y "C:\Users\User\Documents\warehouse-tracker-all4\start-tracker.bat" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\start-tracker.bat"
-```
+   - Press `Win + R` and run: `shell:startup`
+   - Right-click -> `New` -> `Shortcut`
+   - Target: `C:\Users\User\Documents\warehouse-tracker-all4\start-tracker.bat`
+   - Name: `Warehouse Tracker`
 
 3. Reboot once and verify two windows open automatically:
    - `WT Server`
